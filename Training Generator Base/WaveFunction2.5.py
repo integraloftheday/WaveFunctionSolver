@@ -53,7 +53,7 @@ def points(V,minV,maxV,number):
 def round2(num):
     return round(num * 2) / 2
 def V(x,p): #Infiite Square Wall
-    if x>-3 and x<3:
+    if x>-1 and x<1:
         return 0
     else :
         return 10**3
@@ -65,7 +65,7 @@ with open('TrainingInfiteSquareWall.csv', mode='w') as training:
 
     print(p)
     E=[]
-    potential=lambda E:RungeKutta(-4,0,.01,.01,4,lambda t,y,z:z,lambda t,y,z:(y*2*(E-V(t,p)))/c)[2][-1] #intervals of [a,b] where f(a)*f(b)<0
+    potential=lambda E:RungeKutta(-2,0,.01,.01,2,lambda t,y,z:z,lambda t,y,z:(y*2*(E-V(t,p)))/c)[2][-1] #intervals of [a,b] where f(a)*f(b)<0
     print(potential(0))
     Intervals=selector(.1,.1,12,potential)
     #print(Intervals)
