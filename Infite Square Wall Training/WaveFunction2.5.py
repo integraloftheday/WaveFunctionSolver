@@ -35,13 +35,13 @@ E=1
 #zPrime=lambda t,y,z:(y*2*(E-V(t)))/c
 #yPrime=lambda t,y,z:z
 def V(x,p): #Infiite Square Wall
-    if x>-3 and x<3:
+    if x>-6 and x<6:
         return p
     else :
         return 10**3
 
 def VP(x,p): #Infiite Square Wall
-    if x>-3 and x<3:
+    if x>-6 and x<6:
         return p
     else :
         return 0
@@ -74,16 +74,16 @@ with open('TrainingInfiteSquareWall.csv', mode='w') as training:
         #print(p)
         #print(p)
         E=[]
-        potential=lambda E:RungeKutta(-4,0,.01,.1,4,lambda t,y,z:z,lambda t,y,z:(y*2*(E-V(t,p)))/c)[2][-1] #intervals of [a,b] where f(a)*f(b)<0
+        potential=lambda E:RungeKutta(-5,0,.01,.01,5,lambda t,y,z:z,lambda t,y,z:(y*(E-V(t,p)))/c)[2][-1] #intervals of [a,b] where f(a)*f(b)<0
         #print(potential(0))
-        Intervals=selector(.1,.1,1,potential)
+        Intervals=selector(.01,.01,1,potential)
         #print(Intervals)
         index=0
         for a,b in Intervals:
             E.append((index,(hotfix(a,b,potential,.1)))) #by passes the slow bisectionmethod function
             index=index+1
         #print(mathematicaification(str(E)))
-
+        print((p,E[0][1]))
         for i,e in E:
             list1=[int(str(e)[0])]+[i]+points(-4,4,1000)
             training.writerow(list1)
