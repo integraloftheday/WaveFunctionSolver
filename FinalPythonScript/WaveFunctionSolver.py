@@ -2,8 +2,8 @@ import sys
 import numpy as np
 import math
 import matplotlib.pyplot as plt
-import scipy.constants
-import scipy.integrate
+#import scipy.constants
+#import scipy.integrate
 
 #BISECTOR.py 
 def bisectionMethod(a,b,f,tol):
@@ -305,19 +305,36 @@ w=10**3
 fx="((1/2)*(x**p))"
 a=5
 delta=1
+y0=0
+yPrime0=.01 
+selector0=.01
+selectorstep=.01
 
 print(sys.argv)
-w=float(sys.argv[1])
-fx=str(sys.argv[2])
-a=float(sys.argv[3])
-delta=float(sys.argv[4])
+if len(sys.argv)==6:
+    w=float(sys.argv[1])
+    fx=str(sys.argv[2])
+    a=float(sys.argv[3])
+    delta=float(sys.argv[4])
+    number=float(sys.argv[5])
+elif len(sys.argv)==7:
+    w=float(sys.argv[1])
+    fx=str(sys.argv[2])
+    a=float(sys.argv[3])
+    delta=float(sys.argv[4])
+    number=float(sys.argv[5])
+    y0=float(eval(sys.argv[6])[0])
+    yPrime0=float(eval(sys.argv[6])[1])
+    selector0=float(eval(sys.argv[6])[2])
+    selectorstep=float(eval(sys.argv[6])[3])
+
 print(str(w)+str(type(w)))
 print(str(fx)+str(type(fx)))
 print(str(a)+str(type(a)))
 print(str(delta)+str(type(delta)))
 
 def V(x): #Infiite Square Walls
-    if x>-a and x<a:
+    if x>=-a and x<=a:
         return eval(fx)
     else :
         return w
@@ -330,7 +347,7 @@ print(p)
 E=[]
 potential=lambda E:RungeKutta(-(a+delta),0,.01,.01,a+delta,lambda t,y,z:z,lambda t,y,z:(y*1*(E-V(t)))/c)[2][-1] #intervals of [a,b] where f(a)*f(b)<0
 #print(potential(0))
-Intervals=selector(.01,.01,1,potential)
+Intervals=selector(.01,.01,number,potential)
 #print(Intervals)s
 index=0
 for a,b in Intervals:
