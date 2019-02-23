@@ -55,7 +55,7 @@ class neuralNetwork:
     pass 
 
 input_nodes=50
-hidden_nodes=5000
+hidden_nodes=10000
 output_nodes=100
     
 learning_rate =0.05
