@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en"><head>
+  <!--Added CDN for publishing-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/7.0.0/math.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/freshfork/p5.EasyCam@1.0.10/p5.easycam.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+  <title>Schrödinger Solver</title>
+  </head>
+  <body onload="onLoad();">
+    
+    <div id="overlay">
+      <div class="container-fluid">
+        <div class="row">
+        <div class="col" onclick="off()">
+           <!-- For Exit Click -->
+        </div>
+            <div class="col-6 text-center border rounded border-dark">
+              <h1>Schrödinger Equation Solver</h1>
+              <p>This program solves the Schrödinger Equation for any potential</p>
+              <!-- Collapse Equations -->
+              
+              <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" id ="button2D" onclick="setUp2D();">
+                        1D
+                      </button>
+                    </h2>
+                  </div>
+              
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <!--2D Equations-->
+                      <!--Equations X'(t)-->
+                      
+                      <h3>
+                      Potential Equations
+                      </h3>
+                      <div id="Vequations"> </div>
+                      
+                       <button type="button" class="btn btn-primary btn-lg" onclick = "potentialEditor.addEquation();">+</button>
+                       <button type="button" class="btn btn-primary btn-lg" onclick = "potentialEditor.removeEquation();">-</button>
+                      
+                      <h3>
+                      Integration Parameters
+                      </h3>
+
+                      <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" data-toggle="popover" title="Initial x" data-content="Min Value used during integration" >xMin
+                        </div>
+                        <input type="number" aria-label="First name" class="form-control" step="any" id = "xMin">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text" data-toggle="popover" title="Final x" data-content="Max Value used during integration">xMax
+                        </div>
+                        <input type="number" aria-label="Last name" class="form-control" step="any" id = "xMax">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" data-toggle="popover" title="x Step" data-content="The Step used in the numerical solver (Runge-Kutta 4th).">xStep
+                          </div>
+                          <input type="number" aria-label="Last name" class="form-control" step="any" id = "xStep">
+                      </div>
+       
+                          
+                     <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" data-toggle="popover" title="Emin" data-content="" >Emin
+                        </div>
+                        <input type="number" aria-label="First name" class="form-control" step="any" id = "Emin">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text" data-toggle="popover" title="Final x" data-content="Max Value used during integration">Emax
+                        </div>
+                        <input type="number" aria-label="Last name" class="form-control" step="any" id = "Emax">
+                      </div>
+                          
+                          
+
+                    </div>
+                  </div>
+                </div>
+                </div>
+            
+              <!-- Collapse Equations -->
+              <!--Graphing Buttons / Close Button-->
+              <div class="row mt-2">
+                <div class="col text-center">
+              <button type="button" class="btn btn-primary btn-lg" onclick = "clearG();">Clear</button>
+              <button type="button" class="btn btn-primary btn-lg" onclick = "solve();">Solve</button>
+              <button type="button" class="btn btn-primary btn-lg" onclick="off();">Close</button>
+              </div>
+            </div>
+              <!--Graphing Buttons / Close Button-->
+              
+            </div>
+        <div class="col" onclick="off()">
+          <!-- For Exit Click -->
+        </div>
+        </div>
+      </div>
+    </div>
+    <div id ="under" class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/index.html">Schrödinger Equation Solver</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" onclick="on()">Settings</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about.html">About</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      <div class = "row">
+        <div class = "col-md-12">
+          <div id="plot"></div>
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "col-md-12">
+          <div id="plotE"></div>
+        </div>
+      </div>
+    </div>
+    
+
+  
+  
+    <!-- General Javascript -->
+    <script src="sketchO.js?30"></script>
+    <script src="index.js?30"></script>
+    <script src="solver.js?30"></script>
+    <script src="scripts/equation.js"></script>
+    <script src="scripts/equations.js"></script>
+    <script src="scripts/interval.js"></script>
+    <script src="scripts/plotter.js"></script>
+    <script src="scripts/equationEditor.js"></script>
+    <script src="scripts/schrodinger.js"></script>
+    <script src="scripts/solver.js"></script>   
+    <!-- plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.3.0.min.js"></script>
+    <!-- Math.js Javascript --> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.js" integrity="sha512-XTa+nLKjbTCUazCWzwYpykjsTQDaepuKlg9YToCij7+Bdi9aHQhBQlV0rfnYmactJjHdusRQQV+6qWNNv0BScA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--Got up to 30 starting over new version-->
+    <!-- Bootstrap Javascript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  
+
+</body></html>

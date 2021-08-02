@@ -1,5 +1,0 @@
-Finding Eigen Values of Potentials of the form 
-v(x) if -8<x<8 then x**p else return 400 
-Start Time:Thu Dec  6 00:32:37 2018
-powerLevel=0 Eigenvalues:[(0, 0.9950000000000007)]
-End Time:Thu Dec  6 00:32:47 2018

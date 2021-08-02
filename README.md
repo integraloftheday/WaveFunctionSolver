@@ -1,9 +1,9 @@
-# WaveFunctionSolver
-A python program that uses a fourth order runge Karta method to solve the schrodinger wave equation. 
-Then Uses that to train a neural network
+# phasePortraits
 
-Usage "WaveFunctionSolver.py" 
+A website that can graph 2D and 3D phase portaits of differential equations.
+The website can be found here: [integraloftheday.github.io/phasePortraits/](https://integraloftheday.github.io/phasePortraits/)
 
-python WaveFunctionSolver.py w fx a delta number (y0,yPrime0,selector0,selectorstep)
-  
- Last Optional
+## Dependencies
+
+1. The website is built using the [p5js](https://github.com/processing/p5.js) framework.
+2. The WEBGL camera uses [p5.easyCam](https://github.com/freshfork/p5.EasyCam)
