@@ -4,5 +4,6 @@
 
 The goal of this project is to create an easily usable web-based numerical solver for the 1D time independent Schrödinger equation.
 
-Full full documentation please visit [https://schrodinger-solver.glitch.me/about.html](https://schrodinger-solver.glitch.me/about.html)
+For full documentation please visit [https://integraloftheday.github.io/WaveFunctionSolver/about.html](https://integraloftheday.github.io/WaveFunctionSolver/about.html)
 
+For full site please visit [https://integraloftheday.github.io/WaveFunctionSolver/index.html](https://integraloftheday.github.io/WaveFunctionSolver/index.html)
