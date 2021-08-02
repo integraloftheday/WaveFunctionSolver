@@ -1,9 +1,8 @@
-# phasePortraits
+# Schrödinger 1D Equation Solver
 
-A website that can graph 2D and 3D phase portaits of differential equations.
-The website can be found here: [integraloftheday.github.io/phasePortraits/](https://integraloftheday.github.io/phasePortraits/)
+## Introduction
 
-## Dependencies
+The goal of this project is to create an easily usable web-based numerical solver for the 1D time independent Schrödinger equation.
 
-1. The website is built using the [p5js](https://github.com/processing/p5.js) framework.
-2. The WEBGL camera uses [p5.easyCam](https://github.com/freshfork/p5.EasyCam)
+Full full documentation please visit [https://schrodinger-solver.glitch.me/about.html](https://schrodinger-solver.glitch.me/about.html)
+
