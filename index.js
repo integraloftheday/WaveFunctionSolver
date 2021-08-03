@@ -24,15 +24,15 @@ function onLoad(){
 function intialValues(){
   var name = "V";
   var numEq = 1
-  document.getElementById(`Eq-${name}-${numEq}`).value = 500;
-  document.getElementById(`Min-${name}-${numEq}`).value = -0.1;
-  document.getElementById(`Max-${name}-${numEq}`).value = 0.1;
+  document.getElementById(`Eq-${name}-${numEq}`).value = "0.5*x^2";
+  document.getElementById(`Min-${name}-${numEq}`).value = -5;
+  document.getElementById(`Max-${name}-${numEq}`).value = 5;
   
     document.getElementById("xMin").value = -4;
     document.getElementById("xMax").value = 4;
     document.getElementById("xStep").value = 0.1;
-    document.getElementById("Emin").value = 10;
-    document.getElementById("Emax").value =20;
+    document.getElementById("Emin").value = 0;
+    document.getElementById("Emax").value =3.5;
   
 }
 
